@@ -17,4 +17,5 @@ public class MemberServiceTest {
         //then
         Assertions.assertThat(member).isEqualTo(findMember);
     }
+    // 단위 테스트라 부르는데 단위테스트란? 순수하게 자바 코드로 테스트 하는 것을 말한다고 한다.
 }
