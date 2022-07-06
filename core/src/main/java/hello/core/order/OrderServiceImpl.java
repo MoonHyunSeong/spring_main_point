@@ -3,8 +3,10 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class OrderServiceImpl implements OrderService {
 
 
@@ -17,7 +19,7 @@ public class OrderServiceImpl implements OrderService {
     // 이런식으로 수정해서 DIP를 피한다.
     // DI -> 의존관계 주입이라고 부른다. 굉장히 중요하다.
 
-
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
