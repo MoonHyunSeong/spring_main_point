@@ -1,12 +1,15 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+//@RequiredArgsConstructor // final에 맞는 생성자를 만들어준다.
 public class OrderServiceImpl implements OrderService {
 
 
@@ -19,8 +22,8 @@ public class OrderServiceImpl implements OrderService {
     // 이런식으로 수정해서 DIP를 피한다.
     // DI -> 의존관계 주입이라고 부른다. 굉장히 중요하다.
 
-    @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//    @Autowired // 생성  자가 하나만 있을때는 생략이 가능하다.
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
@@ -33,8 +36,8 @@ public class OrderServiceImpl implements OrderService {
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
 
-    //test
     public MemberRepository getMemberRepository() {
         return memberRepository;
     }
+
 }
